@@ -11,15 +11,26 @@ import java.util.function.Predicate;
 public class UserDaoService {
     //Find all users
     private static List<User> users = new ArrayList<>();
+    private static int userCount = 0;
+
+    public UserDaoService() {
+    }
 
     static {
-        users.add(new User(1, "Modisa", LocalDate.now().minusYears(30)));
-        users.add(new User(1, "Tumi", LocalDate.now().minusYears(25)));
-        users.add(new User(1, "Manana", LocalDate.now().minusYears(20)));
+        users.add(new User(++userCount, "Modisa", LocalDate.now().minusYears(30)));
+        users.add(new User(++userCount, "Tumi", LocalDate.now().minusYears(25)));
+        users.add(new User(++userCount, "Manana", LocalDate.now().minusYears(20)));
     }
 
     public List<User> findAll() {
         return users;
+    }
+
+    //create User
+    public  User createUser(User user) {
+        user.setId(++userCount);
+        users.add(user);
+        return user;
     }
 
     public User findUser(int id) {
