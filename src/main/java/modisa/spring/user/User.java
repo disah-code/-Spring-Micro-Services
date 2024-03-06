@@ -6,6 +6,7 @@ public class User {
     private Integer id;
     private String name;
     private LocalDate birthDate;
+    public User() {}
 
     public User(Integer id, String name, LocalDate birthDate) {
         this.id = id;
