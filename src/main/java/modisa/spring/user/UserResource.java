@@ -1,5 +1,6 @@
 package modisa.spring.user;
 
+import modisa.spring.exceptions.UserNotFountException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -22,7 +23,10 @@ public class UserResource {
 
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable int id) {
-        return service.findUser(id);
+        User user = service.findUser(id);
+        if (user == null)
+            throw new UserNotFountException("id: " + id);
+        return user;
     }
 
     @PostMapping("/users")
